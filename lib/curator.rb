@@ -41,7 +41,8 @@ class Curator
     artists_with_multiple = photo_ids.find_all do |id|
     photo_ids.count(id) >= 2
     end
-    artists_with_multiple.uniq
+     artists_with_multiple.uniq
   end
+
 
 end

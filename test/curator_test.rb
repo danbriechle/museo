@@ -176,6 +176,54 @@ class CuratorTest < Minitest::Test
     assert_equal [artist_3[:id]], curator.artists_with_multiple_photographs
   end
 
+  def test_it_can_search_photographs_taken_by_Artist_from_country
+    skip
+    photo_2 = {
+       id: "2",
+       name: "Moonrise, Hernandez",
+       artist_id: "2",
+       year: "1941"
+     }
+
+    photo_3 = {
+      id: "3",
+      name: "Identical Twins, Roselle, New Jersey",
+      artist_id: "3",
+      year: "1967"
+    }
+    photo_4 = {
+       id: "4",
+       name: "Child with Toy Hand Grenade in Central Park",
+       artist_id: "3",
+       year: "1962"
+     }
+    artist_3 = {
+       id: "3",
+       name: "Diane Arbus",
+       born: "1923",
+       died: "1971",
+       country: "United States"
+     }
+
+     artist_2 = {
+        id: "2",
+        name: "Ansel Adams",
+        born: "1902",
+        died: "1984",
+        country: "United States"
+      }
+
+    curator = Curator.new
+
+    curator.add_photograph(photo_2)
+    curator.add_photograph(photo_3)
+    curator.add_photograph(photo_4)
+    curator.add_artist(artist_3)
+    curator.add_artist(artist_2)
+
+    assert_equal 2, curator.photographs_taken_by_artists_from("United States")
+  end
+
 end
 
 
