@@ -27,4 +27,21 @@ class Curator
     end
   end
 
+  def find_photographs_by_artist(artist_object)
+    @photographs.find do |photograph|
+      photograph[:artist_id] == artist_object[:id]
+    end
+  end
+
+  def artists_with_multiple_photographs
+    photo_ids = []
+    @photographs.each do |photo|
+      photo_ids << photo[:artist_id]
+    end
+    artists_with_multiple = photo_ids.find_all do |id|
+    photo_ids.count(id) >= 2
+    end
+    artists_with_multiple.uniq
+  end
+
 end
